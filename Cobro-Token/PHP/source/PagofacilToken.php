@@ -15,7 +15,7 @@ class PagofacilToken {
     private $idUsuario = NULL;
     private $apiSecret = NULL;
 
-    private static $productionMode = FALSE;
+    public static $productionMode = FALSE;
 
     /**
      * Datos proporcionados por PagoFacil
