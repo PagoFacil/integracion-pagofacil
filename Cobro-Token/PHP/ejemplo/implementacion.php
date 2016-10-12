@@ -1,6 +1,6 @@
 <?php
 //Ejemplo de implementacion para consumo de servicios Tokenizados de PagoFacil
-include_once '../source/PagofacilToken.php';
+include_once '../source/PagoFacilToken.php';
 
 //Datos Proporcionados por PagoFacil
 $idUsuario = '';
