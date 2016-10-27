@@ -1,0 +1,27 @@
+﻿<Properties StartupConfiguration="{A01D0233-245C-4E14-B0A3-009944543D59}|Default">
+  <MonoDevelop.Ide.Workbench ActiveDocument="PagoFacilToken/Program.cs">
+    <Files>
+      <File FileName="PagoFacilToken/Program.cs" Line="22" Column="29" />
+      <File FileName="PagoFacilToken/PagoFacilToken.cs" Line="103" Column="49" />
+      <File FileName="PagoFacilToken/PagoFacilAES.cs" Line="12" Column="4" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="PagoFacilToken" expanded="True">
+            <Node name="PagoFacilToken" expanded="True">
+              <Node name="References" expanded="True" />
+              <Node name="Program.cs" selected="True" />
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.ItemProperties.PagoFacilToken PreferredExecutionTarget="MonoDevelop.Default" />
+</Properties>
