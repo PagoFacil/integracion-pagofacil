@@ -9,9 +9,9 @@ $apiKey = '123123123123';
 
 $objDesencriptar = new PagoFacil_Descifrado_Descifrar();
 
-$serializedResponse = $objDesencriptar->desencriptar($respuestaWS, $apiKey);
+$responseEncode = $objDesencriptar->desencriptar($respuestaWS, $apiKey);
 
-$response = unserialize($serializedResponse);
+$response = json_decode($responseEncode);
 
 echo '<pre>';
 var_dump($response);
