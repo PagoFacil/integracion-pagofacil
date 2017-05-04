@@ -7,19 +7,10 @@ class PagoFacil_Descifrado_Descifrar
 {
     public static function desencriptar($encodedInitialData, $key)
     {
-        $encodedInitialData = base64_decode($encodedInitialData);
-        if (strlen($encodedInitialData) < 16) {
-            $encodedInitialData = base64_encode($encodedInitialData);
-            $encodedInitialData = $encodedInitialData . $encodedInitialData;
-            $encodedInitialData = base64_decode($encodedInitialData);
-        }
-        $iv = substr($encodedInitialData, 0, 16);
-        if (strlen($iv) < 16) {
-            $iv = str_pad($iv, 16, '0');
-        }
-        $encodedInitialData = mb_substr($encodedInitialData, 16);
+        $encodedInitialData =  base64_decode($encodedInitialData);
         $cypher = mcrypt_module_open(MCRYPT_RIJNDAEL_128, '', MCRYPT_MODE_CBC, '');
-        if (mcrypt_generic_init($cypher, self::hexToBin($key), $iv) != -1) {
+        if (mcrypt_generic_init($cypher, $key, $key) != -1)
+        {
             $decrypted = mdecrypt_generic($cypher, $encodedInitialData);
             mcrypt_generic_deinit($cypher);
             mcrypt_module_close($cypher);
