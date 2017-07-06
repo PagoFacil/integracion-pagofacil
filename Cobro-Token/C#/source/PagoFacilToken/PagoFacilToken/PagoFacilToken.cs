@@ -31,9 +31,9 @@ namespace PagoFacil.Token
 
 				if (!modoProduccion)
 				{//Desarrollo
-					WS_ALTA = "https://www.pagofacil.net/st/public/CobroToken/Altatoken";
-					WS_BAJA = "https://www.pagofacil.net/st/public/CobroToken/Bajatoken";
-					WS_COBRO = "https://www.pagofacil.net/st/public/CobroToken/Transacciontoken";
+					WS_ALTA = "https://stapi.pagofacil.net/CobroToken/Altatoken";
+					WS_BAJA = "https://stapi.pagofacil.net/CobroToken/Bajatoken";
+					WS_COBRO = "https://stapi.pagofacil.net/CobroToken/Transacciontoken";
 				}
 				else {//Produccion
 					WS_ALTA = "https://www.pagofacil.net/ws/public/CobroToken/Altatoken";
