@@ -29,9 +29,9 @@ class PagoFacilToken {
             }
 
             if(!self::$modoProduccion){//Desarrollo
-                self::$WS_ALTA = 'https://www.pagofacil.net/st/public/CobroToken/Altatoken';
-                self::$WS_BAJA = 'https://www.pagofacil.net/st/public/CobroToken/Bajatoken';
-                self::$WS_COBRO = 'https://www.pagofacil.net/st/public/CobroToken/Transacciontoken';
+                self::$WS_ALTA = 'https://stapi.pagofacil.net/CobroToken/Altatoken';
+                self::$WS_BAJA = 'https://stapi.pagofacil.net/CobroToken/Bajatoken';
+                self::$WS_COBRO = 'https://stapi.pagofacil.net/CobroToken/Transacciontoken';
             }
             else {//Produccion
                 self::$WS_ALTA = 'https://www.pagofacil.net/ws/public/CobroToken/Altatoken';
