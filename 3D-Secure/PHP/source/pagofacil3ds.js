@@ -4,7 +4,7 @@ if (!window.jQuery) {
     jQuery.fn.enviarPagoFacil3dSecure = function(ambiente) {
         switch (ambiente) {
             case "produccion":
-                $(this).attr('action', 'https://pagofacil.net/ws/public/B3DS/Index/index');
+                $(this).attr('action', 'https://api.pagofacil.tech/B3DS/Index/index');
                 break;
             default:
                 $(this).attr('action', 'http://stapi.pagofacil.net/B3DS/Index/index');
