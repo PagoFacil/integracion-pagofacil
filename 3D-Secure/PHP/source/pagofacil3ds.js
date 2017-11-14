@@ -7,7 +7,7 @@ if (!window.jQuery) {
                 $(this).attr('action', 'https://api.pagofacil.tech/B3DS/Index/index');
                 break;
             default:
-                $(this).attr('action', 'http://stapi.pagofacil.net/B3DS/Index/index');
+                $(this).attr('action', 'https://sandbox.pagofacil.net/B3DS/Index/index');
         }
         $(this).on('submit', '', function(e) {
             var campos = $(this).serialize();
