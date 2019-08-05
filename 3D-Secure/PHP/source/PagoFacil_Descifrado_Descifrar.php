@@ -1,10 +1,23 @@
 <?php
 
 /**
- * Clase para descifrar contenido en PHP
+ * Clase para descifrar contenido de transacciones con 3D Secure (3DS), en PHP
+ * 
+ * NOTA:
+ * Para PHP 7.1 o inferior, utilice el método "desencriptar"
+ * Para PHP 7.2 o superior, utilice el método "desencriptar_php72"
  */
 class PagoFacil_Descifrado_Descifrar
-{
+{    
+    const AUTORIZADO = 1;
+    const RECHAZADO = 0;
+    
+    protected $_method;
+
+    public function __construct() {
+        $this->_method = 'AES-128-CBC';
+    }
+
     public static function desencriptar($encodedInitialData, $key)
     {
         $encodedInitialData =  base64_decode($encodedInitialData);
@@ -17,6 +30,35 @@ class PagoFacil_Descifrado_Descifrar
             return self::pkcs5_unpad($decrypted);
         }
         return "";
+    }
+    
+    /**
+     * Permite desencriptar la respuesta que se retorna en transacciones 3D Secure 
+     * (3DS), para PHP versión 7.2 o superior. Requiere el módulo OpenSSL instalado.
+     * 
+     * @param type $encodedInitialData Cadena encriptada que regresa la API
+     * @param type $key Llave de cifrado proporcionada por PagoFácil
+     */
+    function desencriptar_php72($encodedInitialData, $key) {
+        $auth = false;
+        $data = base64_decode($encodedInitialData, true);
+        try {
+            $iv_size = openssl_cipher_iv_length($this->getMethod());
+            $iv = substr($data, 0, $iv_size);
+            $data = substr($data, $iv_size);
+            $decrypted = openssl_decrypt($data, $this->getMethod(), $key, OPENSSL_RAW_DATA|OPENSSL_ZERO_PADDING, $iv);
+
+            if(stripos($decrypted, 'Transaccion exitosa')) {
+                $auth = true;
+            }
+
+            $decryptedArray = json_decode('{'.self::pkcs5_unpad(substr($decrypted, 2)));
+            $decryptedArray->autorizado = $auth ? self::AUTORIZADO : self::RECHAZADO;
+            
+            return json_encode($decryptedArray);
+        } catch (Exception $exc) {
+            return '';
+        }
     }
 
     /**
@@ -49,5 +91,9 @@ class PagoFacil_Descifrado_Descifrar
         if (strspn($text, chr($pad), strlen($text) - $pad) != $pad)
             return false;
         return substr($text, 0, -1 * $pad);
+    }
+    
+    public function getMethod() {
+        return $this->_method;
     }
 }
