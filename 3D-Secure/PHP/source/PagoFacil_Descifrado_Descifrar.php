@@ -48,11 +48,13 @@ class PagoFacil_Descifrado_Descifrar
             $data = substr($data, $iv_size);
             $decrypted = openssl_decrypt($data, $this->getMethod(), $key, OPENSSL_RAW_DATA|OPENSSL_ZERO_PADDING, $iv);
 
+            $decrypted = preg_replace('/^(",")/', '"', self::pkcs5_unpad($decrypted));
+            
             if(stripos($decrypted, 'Transaccion exitosa')) {
                 $auth = true;
             }
-
-            $decryptedArray = json_decode('{'.self::pkcs5_unpad(substr($decrypted, 2)));
+            $decryptedArray = json_decode('{'.$decrypted);
+            
             $decryptedArray->autorizado = $auth ? self::AUTORIZADO : self::RECHAZADO;
             
             return json_encode($decryptedArray);
