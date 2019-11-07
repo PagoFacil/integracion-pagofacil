@@ -23,5 +23,15 @@
         "phpmetrics/phpmetrics": "2.4.*",
         "squizlabs/php_codesniffer": "3.5.*",
         "phpmd/phpmd": "2.7.*"
+    },
+    "autoload": {
+        "psr-4": {
+            "PagoFacil\\3DS\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "PagoFacil\\3DS\\Test\\": "test\"
+        }
     }
 }
