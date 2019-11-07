@@ -1,4 +1,11 @@
+Elemplos
+========
 
+# 3D secure
+## javascript
+
+Esta implementación no depende de de librerias de terceros, pero es necesario que el navegador
+ soporte las especificaciones actuales de emacscript y web API.
 
 ```html
 <script src='https://pagofacil.net/resources/js/pagoFacil3ds.js' type='text/javascript' ></script> 
@@ -32,4 +39,33 @@
 	<input type="submit" name="Enviar" />
 	</form>
 <script src='https://pagofacil.net/resources/js/onsubmitForm.js' type='text/javascript' ></script> 
+```
+
+## php 
+
+Si se desea hacer uso de una respuesta por parte de `PagoFacil.net` por medio de un webhook, 
+necesitará decifrar la respuesta, la misma se ha cifrado bajo AES de 128 en modo 
+`Cipher Block Chaining`. A continuación se muestra el uso propuesto de la implementación.
+
+```php
+use PagoFacil\ThreeDSecure\AbstractAESMcrypt;
+
+final class MyCipherClass extends AbstractAESMcrypt
+{
+    /**
+    * @return array
+    */
+    public function jsonToArray($text)
+    {
+        return json_decode($text);
+    }
+}
+
+$respuestaWS = 'nu+81UQjTbn6oW6KFGS+UUDwC+9DtL0v0LsWVRQvBQ9Rn5BCfKB94D0ibJlUzs6ZOxkBRY1P/od7PkEM59E71DAa30viidJSUZPpYanhA7FP4D1a+toTdJlrYnaXSQ6vKfjw6k8Qel+v4qzNYghYl582LhnBpS6myPARiJk9JJzmN0BWScPSHcc9U3GEo47BwJrmFAEG3avaqlnCJYcPsPXwizGB7H4W/mxZQbxcf+CothvT8L3lM8SHGTasB7uz9eiZISxe/dnzbxDJecg7r+einaFkCdF/gIjJ8/tfyf9yl5XCJk/BRTIltbPlTszbDK/TJRSU0QZPgo2ErcyuQ0fmaFNycb4igrGEAhmnXABXRBiHHiY9XQSL7rb5lD2Pk4sEUgJkjC+Bew/ueC3VBj6TnHlQ1SdMLllUOthXzEkioMqLGLH93dRr1wJ34L6QDP0mQtlDX1zpTzNdGamqmlyMnkpOGwiYyPUc2RZWOD1zmEHy/gbDYwCJQu2mRete2EBvvsAqH+QXVwDsF8mRrpC2p7Nh2aMTKvYkaX8VcifpfOcfuC0DmvFI/gHsUNHKmKiOAxM9njrBlJ+3/IhJKvqI5A5BkJ+j8jsnI79j8UHkEpIL4hcY2T+4wLs6D9c8tnkMbcnbgny+/kfdk7owXg==';
+
+$objectCipher = new MyCipherClass('123123123123');
+$message = $objectCipher->decrypt($respuestaWS);
+$array = $objectCipher->jsonToArray($message);
+
+var_dump($array);
 ```
