@@ -1,6 +1,6 @@
 "use strict";
 
-class PagoFacil3ds {
+export class PagoFacil3ds {
     urlApi;
     formReference;
     encodeFields;
