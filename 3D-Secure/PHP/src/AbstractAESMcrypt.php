@@ -2,6 +2,7 @@
 
 namespace PagoFacil\ThreeDSecure;
 
+use PagoFacil\ThreeDSecure\Exceptions\CipherTextException;
 use PagoFacil\ThreeDSecure\Interfaces\SynchronousCryptography;
 use PagoFacil\ThreeDSecure\Traits\Pkcs5;
 

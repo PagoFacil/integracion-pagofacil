@@ -2,6 +2,8 @@
 
 namespace PagoFacil\ThreeDSecure\Interfaces;
 
+use PagoFacil\ThreeDSecure\Exceptions\CipherTextException;
+
 interface SynchronousCryptography
 {
     /**
@@ -19,12 +21,14 @@ interface SynchronousCryptography
     /**
      * @param string $plainText
      * @return string
+     * @throws CipherTextException
      */
     public function pkcsPadding($plainText);
 
     /**
      * @param string $encodeText
      * @return string
+     * @throws CipherTextException
      */
     public function pkcsUnPadding($encodeText);
 }
