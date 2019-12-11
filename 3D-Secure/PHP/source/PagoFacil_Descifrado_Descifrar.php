@@ -49,6 +49,7 @@ class PagoFacil_Descifrado_Descifrar
             $decrypted = openssl_decrypt($data, $this->getMethod(), $key, OPENSSL_RAW_DATA|OPENSSL_ZERO_PADDING, $iv);
 
             $decrypted = preg_replace('/^(",")/', '"', self::pkcs5_unpad($decrypted));
+            $decrypted = preg_replace('/^(htt)/', '"u":"htt', $decrypted);
             
             if(stripos($decrypted, 'Transaccion exitosa')) {
                 $auth = true;
