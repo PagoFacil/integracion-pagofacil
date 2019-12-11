@@ -1,0 +1,6 @@
+/Users/johnatan/Projects/PagoFacilToken/PagoFacilToken/obj/x86/Debug/.NETFramework,Version=v4.5.AssemblyAttribute.cs
+/Users/johnatan/Projects/PagoFacilToken/PagoFacilToken/bin/Debug/PagoFacilToken.exe.mdb
+/Users/johnatan/Projects/PagoFacilToken/PagoFacilToken/bin/Debug/PagoFacilToken.exe
+/Users/johnatan/Projects/PagoFacilToken/PagoFacilToken/obj/x86/Debug/PagoFacilToken.exe
+/Users/johnatan/Projects/PagoFacilToken/PagoFacilToken/obj/x86/Debug/PagoFacilToken.exe.mdb
+/Users/johnatan/Projects/PagoFacilToken/PagoFacilToken/bin/Debug/Newtonsoft.Json.dll
